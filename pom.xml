@@ -56,4 +56,9 @@
 		<jiraProjectName>LUTECE</jiraProjectName>
         <jiraComponentId>10090</jiraComponentId>
     </properties>
+	<scm>
+        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/applications/actes/trunk/module-actes-s2low</connection>
+        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/applications/actes/trunk/module-actes-s2low</developerConnection>
+        <url>http://dev.lutece.paris.fr/viewvc/lutece/applications/actes/trunk/module-actes-s2low</url>
+    </scm>
 </project>
