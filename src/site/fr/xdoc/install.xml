@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<document>
+    <properties>
+        <title>Installation</title>
+    </properties>
+    <body>
+        <section name="Installation">
+            <subsection name="Pré-requis">
+                <p>
+                    Ce module nécessite une version 2.1.2 ou supérieure du noyau Lutece (lutece-core)
+                </p>
+                <p>Le <a href="/plugins/plugin-actes/fr/index.html" target="_blank" >plugin ACTES</a> doit être installé.</p>
+                <p>Le module nécessite un certificat client X.509 fourni par l'Adullact
+                pour se connecter à la plate-forme</p>
+            </subsection>
+            
+            <subsection name="Fabrication et déploiement (build et deploy)">
+                <p>
+                    Pour construire la dernière version du module suivez les instructions suivantes : 
+                </p>
+                <p>
+                    (NB: Le client Subversion et Maven2 doivent être installés sur votre système)
+                </p>
+                <p>                       
+                    <div class="source">
+                        <pre>
+$ svn export http://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/module-actes-s2low module-actes-s2low
+$ cd module-actes-s2low
+$ mvn lutece:assembly
+                        </pre>
+                    </div>
+                </p>
+                <p>
+                    La dernière commande construit un package du module sous la forme d'un zip dénommé <code>module-actes-s2low-xxx-bin-xxxx.zip</code>
+                    dans le répertoire  <code>./target/assembly</code>
+                </p>
+                <p>
+                    Pour déployer ce package, il suffit simplment de la dézipper dans la racine de votre webapp.
+                </p>
+                
+            </subsection>
+            
+            
+            <subsection name="Configuration">
+                <p>
+                    Ce module utilise l'API HTTP de la plate-forme S²low. Le dialogue
+                    est basé le protocole sécurisé HTTPS avec une authentification mutuelle,
+                    c'est dire que le client et le serveur doivent s'authentifier l'un
+                    vis à vis de l'autre à l'aide de certificats.
+                </p>
+                <p>
+                    Pour la mise en oeuvre du protocole HTTPS, le plugin utilise l'API 
+                    <a href="http://java.sun.com/javase/technologies/security/">
+                    JSSE (Java Secure Socket Extension)</a> et ses mécanismes de stockage des
+                    certificats pour être utilisés par des programmes Java (keystores, truststores).
+                </p>
+                <p>
+                    Pour que le module S²low valide le serveur, il faut stocker dans un truststore le certificat
+                    du serveur en indiquant que l'on fait confiance à ce certificat. Celui-ci peut être
+                    obtenu en acceptant une connexion https au serveur S²low avec votre navigateur et en
+                    exportant ensuite ce certificat. Pour créer le truststore,
+                    il faut utiliser l'outil <code>keytool</code>fourni avec le JDK de la manière suivante :
+                </p>
+                <p>                       
+                    <div class="source">
+                        <pre>
+keytool -import -alias s2lowserver -keystore /path/truststore.jks -file /path/s2lowserver.cer</pre>
+                    </div>
+                </p>
+                <p>
+                    Cette commande crée le truststore nommé <code>truststore.jks</code>dans le répertoire path et y importe
+                    le certificat dont le chemin est <code>/path/s2lowserver.cer</code>.
+                    Un mot de passe vous sera demandé.
+                </p>
+                <p>
+                    Pour que le serveur valide le client, il faut créer un keystore contenant un certificat client associé
+                    à un jeu de clés publique/privé dont le serveur dispose de la clé publique. Ces élements sont fournis
+                    dans un fichier .p12 fourni par l'Adullact.
+                </p>
+                <p>
+                    Pour créer ce keystore, la solution la plus simple est d'utiliser la classe utilitaire fournie
+                    avec le serveur Jetty comme suit :
+                </p>
+                <p>                       
+                    <div class="source">
+                        <pre>
+java -jar jetty.jar org.mortbay.util.PKCS12Import client.p12 /path/keytore.jks </pre>              
+                    </div>
+                </p>
+                <p>
+                    Cette commande crée le keystore nommé <code>keystore.jks</code>dans le répertoire path à partir
+                    du certificat .p12 fourni par l'Adullact. Le mot de passe du keystore est celui lié au certificat
+                    et il est lui aussi fourni par l'Adullact.
+                </p>
+                <p>
+                    Dans le fichier <code>WEB-INF/conf/plugins/actes-s2low.properties</code> configurer :
+                </p>
+                <p> 
+                    <ul>
+                        <li>le nom d'hôte et le port du serveur S²low</li>
+                        <li>les paramètres du keystore contenant le certificat client 
+                        et le jeu de clés privé/publique fourni par l'Adullact : chemin, mot de passe et type</li>
+                        <li>les paramètres du truststore contenant le certificat du serveur : chemin, mot de passe et type</li>
+                        <li>les paramètres du proxy si nécessaire</li>
+                    </ul>
+                </p>
+                <p>
+                    Après lancement de la webapp, activer le module par l'interface 
+                    "Gestion des plugins" du module d'administration
+                </p>
+                
+            </subsection>
+            
+        </section>
+    </body>
+</document>
