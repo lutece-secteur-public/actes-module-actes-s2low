@@ -1,9 +1,22 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <document>
     <properties>
-        <title>Installation</title>
+        <title>Introduction</title>
     </properties>
     <body>
+        <section name="Descriptif du module S²low">
+            <img src="images/logo_s2low.gif" />
+            <subsection name="Introduction">
+                <p>
+                    Ce module réalise, pour le <a href="https://github.com/lutece-secteur-public/actes-plugin-actes" target="_blank" >plugin ACTES</a>,
+                    la télétransmission des actes via la plate-forme S²low de l'Adullact. 
+                </p> 
+                <p>
+                    Pour plus d'informations sur la plate-forme S²low, reportez-vous
+                    aux liens fournis dans le menu.
+                </p>
+            </subsection>
+        </section>
         <section name="Installation">
             <subsection name="Pré-requis">
                 <p>

@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Lutece">
-
-	<version />
-
-	<body>
-		<links>
-			<item name="FR" href="/fr/index.html" />
-		</links>
-
-		<menu name="Downloads" inherit="bottom">
-			<item name="Released versions" href="../../stable_builds/plugins/module-actes-s2low/" />
-			<item name="Nightly builds" href="../../nightly_builds/plugins/module-actes-s2low/" />
-		</menu>
-
-		<menu ref="reports" />
-	</body>
+    
+    <version />
+    
+    <body>
+        <menu name="Module S²low pour le plugin ACTES">
+            <item name="Introduction" href="index.html"/>
+            <item name="Plugin ACTES" href="http://lutece.paris.fr/plugins/plugin-actes/index.html"/>
+        </menu>
+        
+        <menu name="Liens S²low">
+            <item name="Site Officiel S²low" href="http://www.s2low.org/" target="_blank" />
+            <item name="API HTTP" href="http://adullact.net/docman/?group_id=222" target="_blank" />
+        </menu>	    
+        
+        <menu name="Téléchargements" inherit="bottom" >
+            <item name="Versions stables" href="../../stable_builds/plugins/module-actes-s2low/" />
+            <item name="Nightly builds" href="../../nightly_builds/plugins/module-actes-s2low/" />
+        </menu>
+        
+        <menu ref="reports" />
+    </body>
 </project>
