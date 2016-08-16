@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2009, Mairie de Paris
+ * Copyright (c) 2002-2016, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -100,6 +100,9 @@ public class S2lowService implements ITransmissionService
     private String _strDomainName;
     private String _strRealm;
 
+    /**
+     * Initialization
+     */
     private void init( )
     {
         _strServerAddress = AppPropertiesService.getProperty( PROPERTY_S2LOW_SERVER );
@@ -135,6 +138,12 @@ public class S2lowService implements ITransmissionService
         }
     }
 
+    /**
+     * Send the acte
+     * @param acte The acte
+     * @return The transaction ID as a String
+     * @throws TransmissionException if an error occurs 
+     */
     public String sendActe( Acte acte ) throws TransmissionException
     {
         init( );
@@ -252,12 +261,16 @@ public class S2lowService implements ITransmissionService
         }
 
         for ( FilePart ficPart : fileParts )
+        {
             parts.add( ficPart );
-
+        }
+        
         Part [ ] partsTab = new Part [ parts.size( )];
 
         for ( int i = 0; i < parts.size( ); i++ )
+        {
             partsTab [i] = parts.get( i );
+        }
 
         post.setRequestEntity( new MultipartRequestEntity( partsTab, post.getParams( ) ) );
 
@@ -276,7 +289,9 @@ public class S2lowService implements ITransmissionService
                     String strError = "Erreur retourn�e par la plate-forme s2low : ";
 
                     for ( int i = 1; i < tab.length; i++ )
+                    {
                         strError += tab [i];
+                    }
 
                     AppLogService.error( strError );
                     throw new TransmissionException( strError );
@@ -310,6 +325,11 @@ public class S2lowService implements ITransmissionService
         return strIdTransaction;
     }
 
+    /**
+     *  Get infos
+     * @param transaction The transaction 
+     * @throws TransmissionException 
+     */
     public void getInfos( Transaction transaction ) throws TransmissionException
     {
         init( );
@@ -333,7 +353,9 @@ public class S2lowService implements ITransmissionService
                     String error = "Erreur retourn�e par la plate-forme s2low : ";
 
                     for ( int i = 1; i < tab.length; i++ )
+                    {
                         error += tab [i];
+                    }
 
                     throw new RuntimeException( error );
                 }
@@ -382,6 +404,11 @@ public class S2lowService implements ITransmissionService
                         transaction.setStatus( Transaction.STATUS_REFUSE );
 
                         break;
+                    default:
+                        transaction.setStatus( Transaction.STATUS_ERROR );
+
+                        break;
+  
                 }
             }
             else
