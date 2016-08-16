@@ -20,9 +20,9 @@
         <section name="Installation">
             <subsection name="Pré-requis">
                 <p>
-                    Ce module nécessite une version 2.1.2 ou supérieure du noyau Lutece (lutece-core)
+                    Ce module nécessite une version 3.0 ou supérieure du noyau Lutece (lutece-core)
                 </p>
-                <p>Le <a href="/plugins/plugin-actes/fr/index.html" target="_blank" >plugin ACTES</a> doit être installé.</p>
+                <p>Le <a href="https://github.com/lutece-secteur-public/actes-plugin-actes" target="_blank" >plugin ACTES</a> doit être installé.</p>
                 <p>Le module nécessite un certificat client X.509 fourni par l'Adullact
                 pour se connecter à la plate-forme</p>
             </subsection>

@@ -11,9 +11,9 @@ Pour plus d'informations sur la plate-forme S²low, reportez-vous aux liens fourn
 
 ##Pré-requis
 
-Ce module nécessite une version 2.1.2 ou supérieure du noyau Lutece (lutece-core)
+Ce module nécessite une version 3.0 ou supérieure du noyau Lutece (lutece-core)
 
-Le [plugin ACTES](/plugins/plugin-actes/fr/index.html) doit être installé.
+Le [plugin ACTES](https://github.com/lutece-secteur-public/actes-plugin-actes) doit être installé.
 
 Le module nécessite un certificat client X.509 fourni par l'Adullact pour se connecter à la plate-forme
 
